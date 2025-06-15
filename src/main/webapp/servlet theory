@@ -1,0 +1,16 @@
+RequestDispatcher
+It is an interface available in javax.servlet package.
+It has below methods:-
+a)forward()
+If you want to forward the request(HttpServerRequest) from servet to html/jsp/servlet
+
+b)include()
+If you want to include some resources(html/jsp/servlet) then use include()
+
+Diff b/n forward() & include()
+forward() method:you can place many forward() methods in 1 servlet conditionaly to forward the control but only 1 
+forward() will be executed.
+
+include() method:you can place many include() methods in a servlet and all include() methods will be executed.
+ 
+NOTE:You can restrict the user from accesing the resource(html/jsp) by placing the page under WEB-INF folder/directory
