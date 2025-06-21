@@ -33,6 +33,7 @@ public class UserDetailsServlet extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("UserDetailsServlet.service() method is called");
 		List<Student> stuList = RegisteredUser.getAll();
 		request.setAttribute("stu", stuList);
 	//	request.getRequestDispatcher("Mytable.jsp").forward(request, response);
