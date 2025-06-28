@@ -1,7 +1,11 @@
 package com.servlet.lifecycle;
 
 import java.io.IOException;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,15 +14,26 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class TwinkleServlet
  */
-@WebServlet(urlPatterns = {"/twinkle.do"},loadOnStartup = 1)
+@WebServlet(urlPatterns = {"/twinkle.do"},loadOnStartup = 1,initParams = {
+		@WebInitParam(name="email",value="twinkle@7879"),
+		@WebInitParam(name="phone",value="67287879"),
+		@WebInitParam(name="college",value="SIRT")
+})
 public class TwinkleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+   private ServletConfig cfg;
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public TwinkleServlet() {
 		System.out.println("TwinkleServlet constructor");
+	}
+	public void init(ServletConfig cfg) {
+		this.cfg=cfg;
+		String email = cfg.getInitParameter("email");
+		String phone = cfg.getInitParameter("phone");
+		String college = cfg.getInitParameter("college");
+		System.out.println(email+" "+phone+" "+college);
 	}
 
 	/**
@@ -28,6 +43,13 @@ public class TwinkleServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("TwinkleServlet service started");
+		ServletContext servletContext = request.getServletContext();
+		String website = servletContext.getInitParameter("website");
+		System.out.println(website);
+		String email = cfg.getInitParameter("email");
+		String phone = cfg.getInitParameter("phone");
+		String college = cfg.getInitParameter("college");
+		System.out.println(email+" "+phone+" "+college);
 	}
 
 }
